@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>SENAI/Boletim</title>
+</head>
+<body>
+
+    <!-- Menu no alto da tela -->
+    <nav id="nav" class="navbar navbar-expand-lg navbar-white bg-white">
+
+    
+        <!-- Logo da Escola Senai -->
+        <div>
+            <img src="logo-senai1.png" id="logo" alt="3">
+       </div>
+
+       <!-- Título -->
+        <div id="h1">
+            <h1>Boletim Escolar</h1>
+        </div>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">  <!--Botões para organizar a tabela-->
+            <!--<ul id="opcoes" class="navbar-nav">
+
+                Botão acima da tela com a função de colocar os números em ordem Crescente (Em andamento)
+                <li class="nav-item active">
+                    <button id="btn" onclick="Crescente()">
+                        <a id="btnTopo" class="nav-link" href="#"> Organizar por <br> ordem crescente <span class="sr-only">(current)</span></a>
+                    </button>
+                </li>
+                
+                Botão acima da tela com a função de colocar os números em ordem Decrescente (Em andamento)
+                <li class="nav-item active">
+                    <button id="btn" onclick="Decrescente()">
+                    <a id="btnTopo" class="nav-link" href="#">Organizar por <br>ordem decrescente <span class="sr-only">(current)</span></a>
+                    </button>
+                </li>
+
+                Botão acima da tela com a função de colocar os números em ordem Alfabética (Em andamento)
+                <li class="nav-item active">
+                    <button id="btn" onclick="OrdemAlfabetica()">
+                        <a id="btnTopo" class="nav-link" href="#">Organizar por <br>ordem alfabétia <span class="sr-only">(current)</span></a>
+                    </button>
+                </li>
+            </ul> -->
+        </div>
+
+    </nav>
+
+    <!-- Tabela Principal do Boletim -->
+    <table class="table table-striped">
+
+        <!-- Parte do cabeçário da tabela -->
+        <thead>
+
+            <tr id="linha0">
+                <th scope="row" id="indice0"></th> <!-- Local acima do Índice dos alunos com intuito estético -->
+
+                <th id="aluno0" scope="col" colspan="1">Alunos</th> <!-- Título da Coluna dos Alunos -->
+
+                <th scope="col" id="coluna01">Nota 1</th> <!--Menu dropdown com opções de adicionar/remover campo de notas-->
+
+                <th scope="col" id="result0">Resultado</th> <!--Titulo da Coluna de Resultado -->
+
+                <th scope="col">Situação</th> <!-- Titulo da Coluna de Situação -->
+
+                <th scope="col" id="botao_lista0"> <!--Menu dropdown com opções de adicionar/remover campo de notas-->
+                    <div class="dropdown">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"> Opções</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+                        <li>
+                            <button id="btn" onclick="ADCnota()">
+                                <a class="dropdown-item" href="#" id="btn_2"> Adicionar Nota</a> <!-- Botâo de Adicionar nota -->
+                            </button>
+                        </li> 
+
+                        <li>
+                            <button id="btn" onclick="REMnota()">
+                                <a class="dropdown-item" href="#" id="btn_3">Remover Nota</a> <!-- Botâo de Remover nota -->
+                            </button>
+                        </li>
+                        </ul>
+                    </div>
+                </th>
+            </tr>
+
+        </thead>
+
+        <!-- Corpo da Tabela -->
+        <tbody id="tbody">
+
+            <tr id="linha1">
+                
+                <!-- Índice dos Alunos-->
+                <th scope="row" id="indice1">1</th> 
+                
+                <!--Inserção de nomes-->
+                <td scope="row">
+                    <input class="campos" type="text" id="aluno1"> <!--inserção de nomes-->
+                </td>
+
+                <!-- Inserção de notas -->
+                <td scope="row" id="coluna11">
+                    <input type="number" class="campos" id="nota11" min=0 max=100 >
+                </td>  
+
+                
+                <!-- Campo que recebe a média das notas -->
+                <td scope="row" id="coluna_media1">
+                    <output id="media1"></output> 
+                </td>
+
+                <!--Campo que idica as situações "aprovado"/"recuperação"/"reprovado""-->
+                <td>
+                    <output id="situacao1"></output> 
+                </td>  
+                <td scope="row"></td>        
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    <div>
+        <button type="button" class="btn btn-primary" onclick="REMaluno()">Remover</button> <!--Botão para remover alunos-->
+        <button id="btn" type="button" class="btn btn-outline-danger" onclick="ADCaluno()">+</button> <!--Botão para acrescentar novos alunos à tabela-->
+    </div>
+
+    <div>
+        <button id="botaoResultado" type="button" class="btn btn-outline-primary" onclick="MediaAluno()">Ver Resultados</button> <!--Botão que realiza o cálculo da média de todos os alunos inseridos--> 
+    </div>
+
+    <table id="tabelaMediaClasse"  class="table table-striped"><!-- Tabela que recebe o resultado da média geral da classe-->
+        <tr>
+            <th scope="row" colspan="7" id="legendaMediaClasse">Média da Classe</th>
+        </tr>
+        <tr>
+            <td>
+                <output id="mediaClasse"></output> <!--Área que recebe o resultado da média da classe-->
+            </td>
+        </tr>
+    </table>
+    
+    <button id="botaoResultado" type="button" class="btn btn-outline-primary" onclick="MediaClasse()">Ver Resultado</button> <!-- Botão para apresentar média da classe-->
+
+
+<!-- JavaScript Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script></body>
+
+<!-- Link do JavaScript nosso -->
+<script src="script.js"></script>
+
+<!-- Área do CSS -->
+<style>
+
+   .table.table-striped{
+   margin-top: 280px;
+   }
+
+   #logo{
+       width: 250px;
+       height: 250px;
+
+       display: block;
+       margin-left: auto;
+       margin-right: auto;
+   }   
+
+   /* Botão para adicionar alunos à tabela   */
+   #btn{
+       border-radius: 20px;
+   }
+
+   #botaoResultado{
+       margin-left: 50%;
+       transform: translate(-50%);
+       width: 300px;
+   }
+
+   #aluno0{
+       text-align: center;
+   }
+
+    #btn_2, #btn_3{
+    border-radius: 20px;
+    color: white;
+    }
+
+    #btn_3:hover{
+    background-color:rgb(106, 180, 250);
+    }
+
+    #btn_2:hover{
+    background-color:rgb(106, 180, 250);
+    }
+
+   #nav{
+       top: 0;
+       left: 0;
+       right: 0;
+       position: fixed;
+       z-index: 2;
+       width: 100%;
+   }
+
+   /* Botões para organizar a tabela */
+   #opcoes{ 
+       margin-left: 55%;
+   }
+
+   #tabelaMediaClasse{
+       width: 50%;
+       margin-left: 50%;
+       transform: translate(-50%, -50%);
+       margin-top: 10%;
+   }
+
+   #legendaMediaClasse{
+       text-align: center;
+   }
+
+   /* Botões na laterial direita ao tpo */
+   #btnTopo{
+       border-radius: 10px;
+       color: white;
+       margin: 10px;
+       background-color: rgb(86, 165, 240);
+   }
+   
+   #btnTopo:hover{
+       background-color: rgb(46, 150, 247);
+   }
+
+   button{
+    background-color: rgb(86, 165, 240);
+   }
+</style>
+</body>
+</html>
